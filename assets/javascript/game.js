@@ -1,11 +1,14 @@
 const totalGuesses = 10;
 
 
-function generateRandomWord() {
+function generateRandomCountry() {
 	//TODO : add randomization logic
-	var words = ["India", "Japan", "China"];
-	var computerWord = countries[Math.floor(Math.random()*countries.length)].name;
-	return computerWord.toLowerCase();
+	var guessedCountry = countries[Math.floor(Math.random()*countries.length)];
+	return { 
+		longCode : guessedCountry.longCode,
+		name: guessedCountry.name.toLowerCase(),
+		shortCode: guessedCountry.shortCode
+	}
 }	
 
 function setInnerTextOfSpan (span, text){
@@ -20,7 +23,7 @@ var winSpan = document.querySelector('#winSpan');
 var maskedWordSpan = document.querySelector('#currentWordSpan');
 var guessLeftSpan = document.querySelector('#guessLeftSpan');
 var historySpan= document.querySelector('#historySpan');
-var computerWord = "";
+var computerCountry = null;
 var maskedWord = [];
 var validateKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 //TODO : Remove
@@ -51,10 +54,10 @@ function initializeMaskedWord (guessedWord){
 	return outputArray;
 }
 //function updateMaskedWord takes user input key and checks it's
-//position in the computerWord and updates the same postion in maskedWord
+//position in the computerCountry and updates the same postion in maskedWord
 function updateMaskedWord(key){
 	for (var i = 0; i < maskedWord.length; i++) {
-		if(computerWord[i]==key){
+		if(computerCountry.name[i]==key){
 		maskedWord[i] = key;
 	}
 	}
@@ -80,14 +83,14 @@ function gameLoop(){
 			historyArray.push(k);
 			setInnerTextOfSpan(historySpan, historyArray);
 			//3. Check if key is in computer's word
-			if(computerWord.includes(k)){
+			if(computerCountry.name.includes(k)){
 				// 3.1 if true then display ALL occurances of 
 				//user key in current word
 				updateMaskedWord(k);
 				//change text of maskedWord
 				setInnerTextOfSpan(maskedWordSpan, arrayToStringWithSpaceDelimited(maskedWord));
 				// 3.1.1 if word is guessed perform win process
-				if (maskedWord.join("")==computerWord) {
+				if (maskedWord.join("")==computerCountry.name) {
 					winCounter++;
 					guessLeftCounter = totalGuesses;
 					historyArray = [];
@@ -104,15 +107,19 @@ function gameLoop(){
 		}
 	}//3.2.3 if guesses left is zero then start new round
 	if (guessLeftCounter==0) {
-		alert("The word was : "+computerWord);
+		alert("The word was : "+computerCountry.name);
 		guessLeftCounter = totalGuesses;
 		historyArray = [];
 		start();
 	}
 }
 function start(){
-	computerWord = generateRandomWord();
-	maskedWord = initializeMaskedWord(computerWord);
+	var flagCode = "US";
+	if(computerCountry != null){
+		flagCode = computerCountry.name;
+	}
+	computerCountry = generateRandomCountry();
+	maskedWord = initializeMaskedWord(computerCountry.name);
 	initializeDisplay();
 	document.onkeypress = gameLoop;
 }
