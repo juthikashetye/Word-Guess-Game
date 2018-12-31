@@ -7,7 +7,7 @@ function generateRandomCountry() {
 	return { 
 		longCode : guessedCountry.longCode,
 		name: guessedCountry.name.toLowerCase(),
-		shortCode: guessedCountry.shortCode
+		shortCode: guessedCountry.shortCode.toLowerCase()
 	}
 }	
 
@@ -23,11 +23,11 @@ var winSpan = document.querySelector('#winSpan');
 var maskedWordSpan = document.querySelector('#currentWordSpan');
 var guessLeftSpan = document.querySelector('#guessLeftSpan');
 var historySpan= document.querySelector('#historySpan');
-var computerCountry = null;
+
+var flagSpan= document.querySelector('#flagSpan');
+var computerCountry = { longCode :'USA', name: 'United States', shortCode: 'us'};
 var maskedWord = [];
 var validateKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-//TODO : Remove
-var tempSpan = document.querySelector('#tempSpan');	
 
 function initializeDisplay() {
 	setInnerTextOfSpan(winSpan, winCounter);
@@ -113,11 +113,8 @@ function gameLoop(){
 		start();
 	}
 }
-function start(){
-	var flagCode = "US";
-	if(computerCountry != null){
-		flagCode = computerCountry.name;
-	}
+function start(){	
+	flagSpan.innerHTML = " This is the flag of "+computerCountry.name.toUpperCase()+" <img id = flagImage src = assets/images/flags-medium/"+computerCountry.shortCode+".png >"
 	computerCountry = generateRandomCountry();
 	maskedWord = initializeMaskedWord(computerCountry.name);
 	initializeDisplay();
