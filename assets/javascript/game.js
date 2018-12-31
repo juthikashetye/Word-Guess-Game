@@ -22,10 +22,11 @@ var historyArray = [];
 var winSpan = document.querySelector('#winSpan');
 var maskedWordSpan = document.querySelector('#currentWordSpan');
 var guessLeftSpan = document.querySelector('#guessLeftSpan');
-var historySpan= document.querySelector('#historySpan');
+var historySpan = document.querySelector('#historySpan');
+var detailSpan = document.querySelector('#detailSpan'); 
 
 var flagSpan= document.querySelector('#flagSpan');
-var computerCountry = { longCode :'USA', name: 'United States', shortCode: 'us'};
+var computerCountry = null;
 var maskedWord = [];
 var validateKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -113,8 +114,41 @@ function gameLoop(){
 		start();
 	}
 }
+function getContinentName(continentShort){
+	var continentDetails = {
+  "AF": "Africa",
+  "AN": "Antarctica",
+  "AS": "Asia",
+  "EU": "Europe",
+  "NA": "North America",
+  "OC": "Oceania",
+  "SA": "South America"
+}
+return continentDetails[continentShort];
+}
 function start(){	
-	flagSpan.innerHTML = " This is the flag of "+computerCountry.name.toUpperCase()+" <img id = flagImage src = assets/images/flags-medium/"+computerCountry.shortCode+".png >"
+	if(computerCountry != null){
+	flagSpan.innerHTML = 
+	" <figure><figcaption>This is the flag of " +
+	computerCountry.name.toUpperCase()+".</figcaption>" +
+	"<img id = flagImage src = assets/images/flags-medium/"+
+	computerCountry.shortCode+".png alt='Sorry. Do not have flag of "+computerCountry.shortCode+"' >"+
+	"</figure>";
+	var countryDetails = countriesMap[computerCountry.shortCode.toUpperCase()];
+	if(countryDetails!=null){
+		detailSpan.innerHTML = computerCountry.name.toUpperCase() + 
+		" lies in " + getContinentName(countryDetails.continent) + 
+		". <br> The capital of " + computerCountry.name.toUpperCase() +
+		" is "+ countryDetails.capital +".<br> The currency of " +
+		 computerCountry.name.toUpperCase() + " is " + countryDetails.currency + "."
+	}
+	
+	}
+	//TODO : add code for start hangman image
+	// else{
+
+	// }
+
 	computerCountry = generateRandomCountry();
 	maskedWord = initializeMaskedWord(computerCountry.name);
 	initializeDisplay();
