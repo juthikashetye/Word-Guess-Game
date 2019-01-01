@@ -126,7 +126,7 @@ function gameLoop() {
         }
     } //3.2.3 if guesses left is zero then start new round
     if (guessLeftCounter == 0) {
-        alert("The word was : " + computerCountry.name);
+        alert(`You lost! The word was : ${computerCountry.name}. Try again.`);
         guessLeftCounter = totalGuesses;
         historyArray = [];
         start();
@@ -150,20 +150,20 @@ function getContinentName(continentShort) {
 function start() {
     if (computerCountry != null) {
         flagSpan.innerHTML =
-            " <figure><figcaption>This is the flag of " +
-            computerCountry.name.toUpperCase() + ".</figcaption>" +
-            "<img id = flagImage src = assets/images/flags-medium/" +
-            computerCountry.shortCode.toLowerCase() + ".png alt='Sorry. Do not have flag of " +
-            computerCountry.shortCode + "' ></figure>";
+            `<figure>
+                <figcaption>This is the flag of ${computerCountry.name.toUpperCase()}.</figcaption> 
+                <img  class = "img-fluid" id = "flagImage" src = "assets/images/flags-medium/${computerCountry.shortCode.toLowerCase()}.png"
+                alt = "Sorry! Do not have flag of ${computerCountry.shortCode}">
+            </figure>`;
 
         var countryDetails = countriesMap[computerCountry.shortCode];
         if (countryDetails != null) {
-            detailSpan.innerHTML = computerCountry.name.toUpperCase() +
-                " lies in " + getContinentName(countryDetails.continent) +
-                ". <br> The capital of " + computerCountry.name.toUpperCase() +
-                " is " + countryDetails.capital + ".<br> The currency of " +
-                computerCountry.name.toUpperCase() + " is " + countryDetails.currency + ".";
-            gmapCanvas.src = "https://maps.google.com/maps?q=" + computerCountry.name + "&z=5&ie=UTF8&iwloc=&output=embed";
+            detailSpan.innerHTML = `${computerCountry.name.toUpperCase()} lies in ${getContinentName(countryDetails.continent)}.
+            <br>
+            The capital of ${computerCountry.name.toUpperCase()} is ${countryDetails.capital}.
+            <br>
+            The currency of ${computerCountry.name.toUpperCase()} is ${countryDetails.currency}.`;
+            gmapCanvas.src = "https://maps.google.com/maps?q=Country+of+" + computerCountry.name + "&ie=UTF8&iwloc=&output=embed";
         }
 
     }
