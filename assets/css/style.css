@@ -4,8 +4,32 @@
     background-color: lightgray;
 }
 
+html { 
+  background: url("../images/world-map-rs.gif") no-repeat center fixed; 
+  background-size: cover;
+}
+
 body {
-	background-image: url("../images/world-map-rs.gif");
-	background-repeat: no-repeat;
-	background-size: cover;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 100%;
+	line-height: 2.5em;
+	background-color: transparent;
+}
+
+h1 {
+	font-family: "Courier New", Courier, monospace;
+	font-weight: bold;
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+p {
+	font-size: 1em;
 }
