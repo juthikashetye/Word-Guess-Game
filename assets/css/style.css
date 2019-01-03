@@ -25,7 +25,11 @@ body {
 
 #flagSpan,
 #detailSpan{
-	color: #a6a6a6;
+	color:  #80ff80;
+}
+
+#historySpan{
+	overflow-wrap: break-word;
 }
 
 h1 {
