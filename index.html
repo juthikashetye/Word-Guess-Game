@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
    <head>
+   	  <meta charset="UTF-8">
       <title>Word Guess Game</title>
+      <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <!-- External CSS Stylesheet -->
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
    </head>
    <body class="container-fluid w-100">
       <div class="container main-content mx-auto mt-4 mb-4 p-3  text-center">
-         <img class="img-fluid mb-3" src="assets/images/hangmancopy3.jpg" width=500px>
-         <h2>Guess the country</h2>
-         <h3>At the end of the round I will tell you more about the country.</h3>
-         <div class="row justify-content-center no-gutters">
+         <h1>HANGMAN</h1>
+         <h2>Guess The Country</h2>
+         <h3>Press any key to get started</h3>
+         <div class="row justify-content-center ">
             <div class="col-sm-6 col-lg-4">
                <p>Wins : <span id="winSpan"></span></p>
                <p>Current Word : <br>
-               <span id="currentWordSpan"></span></p>
+                  <span id="currentWordSpan"></span>
+               </p>
                <p>Guesses Left : <span id="guessLeftSpan"></span></p>
                <p>Your Guesses so far : <br>
-               <span id ="historySpan"></span></p>
+                  <span id ="historySpan"></span>
+               </p>
             </div><!--col-->
-            
             <div class="col-sm-6 col-lg-4">
                <p class="flagContainer m-auto"><span id ="flagSpan"></span></p>
                <p><span id ="detailSpan"></span></p>
@@ -27,13 +31,10 @@
                   <iframe class="embed-responsive-item" src="" id="gmap_canvas2">
                   </iframe>
                </div><!--iframe div-->
-               
             </div><!--col-->
-            
          </div><!--row-->
-         
       </div><!--container-->
-      
+
       <!-- External JavaScript files -->
       <script src="assets/javascript/countries.js"></script>
       <script src="assets/javascript/countriesMap.js"></script>
