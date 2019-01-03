@@ -7,6 +7,13 @@ var winCounter = 0;
 var guessLeftCounter = totalGuesses;
 //Alphabets already guessed
 var historyArray = [];
+//Winning music
+var winMusic = new Audio('assets/audio/NFF-got-news-a.wav');
+//Wrong Guess Music
+var wrongGuessMusic = new Audio('assets/audio/NFF-bump.wav');
+//Losing music
+var loseMusic = new Audio('assets/audio/NFF-no-go.wav');
+
 
 //Selecting Spans created in html
 var winSpan = document.querySelector('#winSpan');
@@ -109,6 +116,7 @@ function gameLoop() {
                 // 3.1.1 if complete word is guessed perform win process
                 if (maskedWord.join("") == computerCountry.name) {
                     winCounter++;
+                    winMusic.play();
                     //Reset guesses left and history span
                     guessLeftCounter = totalGuesses;
                     historyArray = [];
@@ -122,10 +130,12 @@ function gameLoop() {
                 //3.2.1 reduce guess left
                 guessLeftCounter--;
                 setInnerTextOfSpan(guessLeftSpan, guessLeftCounter);
+                wrongGuessMusic.play(); 
             }
         }
     } //3.2.3 if guesses left is zero then start new round
-    if (guessLeftCounter == 0) {
+    if (guessLeftCounter < 1) {
+        loseMusic.play();
         alert(`You lost! The word was : ${computerCountry.name}. Try again.`);
         guessLeftCounter = totalGuesses;
         historyArray = [];
@@ -167,10 +177,14 @@ function start() {
         }
 
     }
-    //TODO : add code for start hangman image
-    // else{
-
-    // }
+    //start with main hangman image
+    else{
+        flagSpan.innerHTML =
+            `<figure>
+                <img  class = "img-fluid" id = "flagImage" src = "assets/images/earth.gif"
+                alt = "Earth">
+            </figure>`;
+    }
 
     computerCountry = generateRandomCountry();
     initializeMaskedWord(computerCountry.name);
