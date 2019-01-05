@@ -32,6 +32,10 @@ body {
 	overflow-wrap: break-word;
 }
 
+#spacemanSpan{
+	width: 100px;
+}
+
 h1 {
 	font-family: "Courier New", Courier, monospace;
 	font-weight: bold;

@@ -14,6 +14,17 @@ var wrongGuessMusic = new Audio('assets/audio/NFF-bump.wav');
 //Losing music
 var loseMusic = new Audio('assets/audio/NFF-no-go.wav');
 
+var spacemanImage = ['<img src="assets/images/spaceman1 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman2 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman3 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman4 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman5 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman6 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman7 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman8 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman9 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman10 copy.jpeg" width=170px>',
+                    '<img src="assets/images/spaceman11 copy.jpeg" width=170px>'];
 
 //Selecting Spans created in html
 var winSpan = document.querySelector('#winSpan');
@@ -23,11 +34,12 @@ var historySpan = document.querySelector('#historySpan');
 var detailSpan = document.querySelector('#detailSpan');
 var gmapCanvas = document.querySelector('#gmap_canvas2');
 var flagSpan = document.querySelector('#flagSpan');
+var spacemanSpan = document.querySelector('#spacemanSpan');
 
 //A function for setting content of span
 //so that we don't have to repeat .innerText for all spans
 function setInnerTextOfSpan(span, text) {
-    span.innerText = text;
+    span.innerHTML = text;
 }
 
 //Holds randomly selected country details
@@ -52,6 +64,7 @@ function initializeDisplay() {
     setInnerTextOfSpan(maskedWordSpan, arrayToStringWithSpaceDelimited(maskedWord));
     setInnerTextOfSpan(guessLeftSpan, guessLeftCounter);
     setInnerTextOfSpan(historySpan, historyArray);
+    setInnerTextOfSpan(spacemanSpan, spacemanImage[0]);
 }
 
 //Without this array of alphabets is separated by commas in it's string representation.
@@ -130,13 +143,13 @@ function gameLoop() {
                 //3.2.1 reduce guess left
                 guessLeftCounter--;
                 setInnerTextOfSpan(guessLeftSpan, guessLeftCounter);
-                wrongGuessMusic.play(); 
+                setInnerTextOfSpan(spacemanSpan, spacemanImage[totalGuesses-guessLeftCounter]);
+                wrongGuessMusic.play();
             }
         }
     } //3.2.3 if guesses left is zero then start new round
-    if (guessLeftCounter < 1) {
+    if (guessLeftCounter === 0) {
         loseMusic.play();
-        alert(`You lost! The word was : ${computerCountry.name}. Try again.`);
         guessLeftCounter = totalGuesses;
         historyArray = [];
         start();
@@ -168,7 +181,9 @@ function start() {
 
         var countryDetails = countriesMap[computerCountry.shortCode];
         if (countryDetails != null) {
-            detailSpan.innerHTML = `${computerCountry.name.toUpperCase()} lies in ${getContinentName(countryDetails.continent)}.
+            detailSpan.innerHTML = ` The Country was ${computerCountry.name.toUpperCase()}.
+            <br>
+            ${computerCountry.name.toUpperCase()} lies in ${getContinentName(countryDetails.continent)}.
             <br>
             The capital of ${computerCountry.name.toUpperCase()} is ${countryDetails.capital}.
             <br>
