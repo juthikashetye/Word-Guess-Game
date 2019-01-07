@@ -3,31 +3,36 @@ const validateKeys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 //Counter for Wins, Goes up for every correct country guessed
 var winCounter = 0;
+//Counter for Losses, Goes up for every incorrect country guessed
+var lossCounter = 0;
 //Counter for Guesses Left, Goes down for every wrong alphabet guessed
 var guessLeftCounter = totalGuesses;
 //Alphabets already guessed
 var historyArray = [];
 //Winning music
 var winMusic = new Audio('assets/audio/NFF-got-news-a.wav');
+// Correct Guess Music
+var correctGuessMusic = new Audio ('assets/audio/NFF-coin-04.wav');
 //Wrong Guess Music
 var wrongGuessMusic = new Audio('assets/audio/NFF-bump.wav');
 //Losing music
-var loseMusic = new Audio('assets/audio/NFF-no-go.wav');
+var loseMusic = new Audio('assets/audio/NFF-slam.wav');
 
-var spacemanImage = ['<img src="assets/images/spaceman1 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman2 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman3 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman4 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman5 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman6 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman7 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman8 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman9 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman10 copy.jpeg" width=170px>',
-                    '<img src="assets/images/spaceman11 copy.jpeg" width=170px>'];
+var spacemanImage = ['<img class = "img-fluid" src="assets/images/spaceman1 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman2 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman3 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman4 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman5 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman6 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman7 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman8 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman9 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman10 copy.jpeg" width=170px>',
+                    '<img class = "img-fluid" src="assets/images/spaceman11 copy.jpeg" width=170px>'];
 
 //Selecting Spans created in html
 var winSpan = document.querySelector('#winSpan');
+var lossSpan = document.querySelector('#lossSpan');
 var maskedWordSpan = document.querySelector('#currentWordSpan');
 var guessLeftSpan = document.querySelector('#guessLeftSpan');
 var historySpan = document.querySelector('#historySpan');
@@ -61,6 +66,7 @@ function generateRandomCountry() {
 //Set initial content for required html spans
 function initializeDisplay() {
     setInnerTextOfSpan(winSpan, winCounter);
+    setInnerTextOfSpan(lossSpan, lossCounter);
     setInnerTextOfSpan(maskedWordSpan, arrayToStringWithSpaceDelimited(maskedWord));
     setInnerTextOfSpan(guessLeftSpan, guessLeftCounter);
     setInnerTextOfSpan(historySpan, historyArray);
@@ -121,6 +127,8 @@ function gameLoop() {
             setInnerTextOfSpan(historySpan, historyArray);
             //3. Check if key is in computer's word
             if (computerCountry.name.includes(k)) {
+                // Play correct guess music
+                correctGuessMusic.play()
                 // 3.1 if true then display ALL occurances of 
                 //user key in current word
                 updateMaskedWord(k);
@@ -130,11 +138,9 @@ function gameLoop() {
                 if (maskedWord.join("") == computerCountry.name) {
                     winCounter++;
                     winMusic.play();
-                    //Reset guesses left and history span
-                    guessLeftCounter = totalGuesses;
-                    historyArray = [];
-                    //Start new round
-                    start();
+                    displayCountryInfo();
+                    //Reset & start new round
+                    reset();
                 }
 
             }
@@ -149,10 +155,11 @@ function gameLoop() {
         }
     } //3.2.3 if guesses left is zero then start new round
     if (guessLeftCounter === 0) {
-        loseMusic.play();
-        guessLeftCounter = totalGuesses;
-        historyArray = [];
-        start();
+        lossCounter ++;
+        setInnerTextOfSpan(lossSpan, lossCounter);
+        loseMusic.play(); 
+        displayCountryInfo();
+        setTimeout(reset, 3000);
     }
 }
 
@@ -169,8 +176,8 @@ function getContinentName(continentShort) {
     return continentDetails[continentShort];
 }
 
-//Start new round of game
-function start() {
+function displayCountryInfo (){
+
     if (computerCountry != null) {
         flagSpan.innerHTML =
             `<figure>
@@ -190,20 +197,23 @@ function start() {
             The currency of ${computerCountry.name.toUpperCase()} is ${countryDetails.currency}.`;
             gmapCanvas.src = "https://maps.google.com/maps?q=Country+of+" + computerCountry.name + "&ie=UTF8&iwloc=&output=embed";
         }
-
     }
-    //start with main hangman image
-    else{
-        flagSpan.innerHTML =
-            `<figure>
-                <img  class = "img-fluid" id = "flagImage" src = "assets/images/earth.gif"
-                alt = "Earth">
-            </figure>`;
-    }
+}
 
+//Start new round of game
+function start() {
     computerCountry = generateRandomCountry();
     initializeMaskedWord(computerCountry.name);
     initializeDisplay();
     document.onkeypress = gameLoop;
 }
+
+// Resets guesses left & history span.
+// Starts new round of game
+function reset (){
+    guessLeftCounter = totalGuesses;
+    historyArray = [];
+    start();
+}
+
 start();

@@ -14,11 +14,12 @@
          <h2>Guess The Country</h2>
          <h3>Press any key to get started</h3>
          <div class="row justify-content-center ">
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-2">
               <span id ="spacemanSpan"></span>
             </div>
-            <div class="col-sm-6 col-lg-4">
+            <div class="col-sm-6 col-lg-6">
                <p>Wins : <span id="winSpan"></span></p>
+               <p>Losses : <span id="lossSpan"></span></p></p>
                <p>Current Word : <br>
                   <span id="currentWordSpan"></span>
                </p>
@@ -29,7 +30,9 @@
                <p><span id ="detailSpan"></span></p>
             </div><!--col-->
             <div class="col-sm-6 col-lg-4">
-               <p class="flagContainer m-auto"><span id ="flagSpan"></span></p>
+               <p class="flagContainer m-auto"><span id ="flagSpan">
+                  <img src="assets/images/earth.gif">
+               </span></p>
                <div class="embed-responsive embed-responsive-16by9 placeMap m-auto">
                   <iframe class="embed-responsive-item" src="" id="gmap_canvas2">
                   </iframe>
