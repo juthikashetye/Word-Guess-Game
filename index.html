@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-   	  <meta charset="UTF-8">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Word Guess Game</title>
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <!-- Google Fonts -->
+      <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
       <!-- External CSS Stylesheet -->
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
    </head>
@@ -15,11 +18,11 @@
          <h3>Press any key to get started</h3>
          <div class="row justify-content-center ">
             <div class="col-sm-6 col-lg-2">
-              <span id ="spacemanSpan"></span>
+               <span id ="spacemanSpan"></span>
             </div>
             <div class="col-sm-6 col-lg-6">
                <p>Wins : <span id="winSpan"></span></p>
-               <p>Losses : <span id="lossSpan"></span></p></p>
+               <p>Losses : <span id="lossSpan"></span></p>
                <p>Current Word : <br>
                   <span id="currentWordSpan"></span>
                </p>
@@ -28,19 +31,21 @@
                   <span id ="historySpan"></span>
                </p>
                <p><span id ="detailSpan"></span></p>
-            </div><!--col-->
+            </div>
+            <!--col-->
             <div class="col-sm-6 col-lg-4">
-               <p class="flagContainer m-auto"><span id ="flagSpan">
-                  <img src="assets/images/earth.gif">
-               </span></p>
+               <p class="flagContainer m-auto"><span id ="flagSpan"></span></p>
                <div class="embed-responsive embed-responsive-16by9 placeMap m-auto">
                   <iframe class="embed-responsive-item" src="" id="gmap_canvas2">
                   </iframe>
-               </div><!--iframe div-->
-            </div><!--col-->
-         </div><!--row-->
-      </div><!--container-->
-
+               </div>
+               <!--iframe div-->
+            </div>
+            <!--col-->
+         </div>
+         <!--row-->
+      </div>
+      <!--container-->
       <!-- External JavaScript files -->
       <script src="assets/javascript/countries.js"></script>
       <script src="assets/javascript/countriesMap.js"></script>

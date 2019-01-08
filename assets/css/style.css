@@ -1,53 +1,67 @@
 html { 
-  	background: url("../images/world-terrain-map.jpg") no-repeat center fixed; 
+  	background: url("../images/earthFromSpace.jpg") no-repeat center fixed; 
   	background-size: cover;
 }
 
 body {
 	font-family: Copperplate, fantasy;
 	font-size: 100%;
-	line-height: 2.5em;
+	line-height: 2em;
 	background-color: transparent;
-	color: rgb(255,255,255);
+	color: #fff8dc;
 	width: 100%;
 }
 
 .main-content {
 	background-color: rgb(0, 0, 0);
-  	background-color: rgba(0, 0, 0, 0.7);
-  	border: 1px solid black;
+  	background-color: rgba(0, 0, 0, 0.5);
 }
 
 #currentWordSpan,
 #historySpan{
-	color: #FAFA01;
+	color: #ffd154;
 }
-
-#flagSpan,
+#flagSpan{
+	font-family: Copperplate, fantasy;
+	color: #ffc0cb;
+}
 #detailSpan{
-	color:  #80ff80;
+	color:  #63b863;
 }
-
 #historySpan{
 	overflow-wrap: break-word;
 }
-
-#spacemanSpan{
-	width: 100px;
+.manImage {
+	width: 170px;
 }
 
 h1 {
-	font-family: "Courier New", Courier, monospace;
-	font-weight: bold;
+	font-family: Monoton, fantasy;
 	font-size: 4.5em;
 	letter-spacing: 7px;
-	color: #FAFA01;
-	text-shadow: 3px 3px 5px blue;
+	color: #ffd154;
 }
 
 h2 {
 	font-size: 2.1em;
-	color: #3333ff;
+	color: #42ade0;
+}
+
+h3 {
+	font-size: 1.6em;
+	color: #808080;
+}
+
+p {
+	font-size: 1.4em;
+	font-family: Verdana, Geneva, sans-serif;
+}
+@media screen and (max-width: 980px){
+	h1{
+		font-size: 4.5em;
+	}
+	h2 {
+	font-size: 2.1em;
 }
 
 h3 {
@@ -56,4 +70,46 @@ h3 {
 
 p {
 	font-size: 1.4em;
+}
+	.manImage {
+	width: 170px;
+}
+}
+@media screen and (max-width: 768px){
+	h1{
+		font-size: 3.5em;
+	}
+	h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.4em;
+}
+
+p {
+	font-size: 1.2em;
+}
+.manImage {
+	width: 160px;
+}
+}
+@media screen and (max-width: 640px){
+	h1{
+		font-size: 2.9em;
+	}
+	h2 {
+	font-size: 1.8em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+p {
+	font-size: 1.3em;
+}
+.manImage {
+	width: 130px;
+}
 }

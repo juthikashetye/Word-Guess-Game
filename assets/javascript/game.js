@@ -12,23 +12,24 @@ var historyArray = [];
 //Winning music
 var winMusic = new Audio('assets/audio/NFF-got-news-a.wav');
 // Correct Guess Music
-var correctGuessMusic = new Audio ('assets/audio/NFF-coin-04.wav');
+var correctGuessMusic = new Audio('assets/audio/NFF-coin-04.wav');
 //Wrong Guess Music
 var wrongGuessMusic = new Audio('assets/audio/NFF-bump.wav');
 //Losing music
 var loseMusic = new Audio('assets/audio/NFF-slam.wav');
 
-var spacemanImage = ['<img class = "img-fluid" src="assets/images/spaceman1 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman2 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman3 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman4 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman5 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman6 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman7 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman8 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman9 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman10 copy.jpeg" width=170px>',
-                    '<img class = "img-fluid" src="assets/images/spaceman11 copy.jpeg" width=170px>'];
+var spacemanImage = ['<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut001 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut002 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut003 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut004 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut005 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut006 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut007 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut008 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut009 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut010 copy.jpeg">',
+    '<img class = "img-fluid manImage" src="assets/images/astronautImages/astronaut011 copy.jpeg">'
+];
 
 //Selecting Spans created in html
 var winSpan = document.querySelector('#winSpan');
@@ -144,20 +145,20 @@ function gameLoop() {
                 }
 
             }
-            //3.2 if key is NOT in computer's word then 	
+            //3.2 if key is NOT in computer's word then     
             else {
                 //3.2.1 reduce guess left
                 guessLeftCounter--;
                 setInnerTextOfSpan(guessLeftSpan, guessLeftCounter);
-                setInnerTextOfSpan(spacemanSpan, spacemanImage[totalGuesses-guessLeftCounter]);
+                setInnerTextOfSpan(spacemanSpan, spacemanImage[totalGuesses - guessLeftCounter]);
                 wrongGuessMusic.play();
             }
         }
     } //3.2.3 if guesses left is zero then start new round
     if (guessLeftCounter === 0) {
-        lossCounter ++;
+        lossCounter++;
         setInnerTextOfSpan(lossSpan, lossCounter);
-        loseMusic.play(); 
+        loseMusic.play();
         displayCountryInfo();
         setTimeout(reset, 3000);
     }
@@ -176,12 +177,12 @@ function getContinentName(continentShort) {
     return continentDetails[continentShort];
 }
 
-function displayCountryInfo (){
+function displayCountryInfo() {
 
     if (computerCountry != null) {
         flagSpan.innerHTML =
             `<figure>
-                <figcaption>This is the flag of ${computerCountry.name.toUpperCase()}.</figcaption> 
+                <figcaption>Flag of ${computerCountry.name.toUpperCase()}</figcaption> 
                 <img  class = "img-fluid" id = "flagImage" src = "assets/images/flags-medium/${computerCountry.shortCode.toLowerCase()}.png"
                 alt = "Sorry! Do not have flag of ${computerCountry.shortCode}">
             </figure>`;
@@ -210,7 +211,7 @@ function start() {
 
 // Resets guesses left & history span.
 // Starts new round of game
-function reset (){
+function reset() {
     guessLeftCounter = totalGuesses;
     historyArray = [];
     start();
