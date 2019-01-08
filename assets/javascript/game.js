@@ -191,11 +191,11 @@ function displayCountryInfo() {
         if (countryDetails != null) {
             detailSpan.innerHTML = ` The Country was ${computerCountry.name.toUpperCase()}.
             <br>
-            ${computerCountry.name.toUpperCase()} lies in ${getContinentName(countryDetails.continent)}.
+            Capital : ${countryDetails.capital}.
             <br>
-            The capital of ${computerCountry.name.toUpperCase()} is ${countryDetails.capital}.
+            Currency : ${countryDetails.currency}.        
             <br>
-            The currency of ${computerCountry.name.toUpperCase()} is ${countryDetails.currency}.`;
+            Continent : ${getContinentName(countryDetails.continent)}.`;
             gmapCanvas.src = "https://maps.google.com/maps?q=Country+of+" + computerCountry.name + "&ie=UTF8&iwloc=&output=embed";
         }
     }

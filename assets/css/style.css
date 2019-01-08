@@ -18,19 +18,27 @@ body {
 }
 
 #currentWordSpan,
-#historySpan{
+#historySpan {
 	color: #ffd154;
 }
-#flagSpan{
+
+#flagSpan {
 	font-family: Copperplate, fantasy;
-	color: #ffc0cb;
+	color: #ff69ff;
 }
-#detailSpan{
-	color:  #63b863;
+
+#flagImage {
+	border: 2px solid #C0C0C0;
 }
-#historySpan{
+
+#detailSpan {
+	color: #43D58C;
+}
+
+#historySpan {
 	overflow-wrap: break-word;
 }
+
 .manImage {
 	width: 170px;
 }
