@@ -3,12 +3,6 @@
 ## About the game
 * This is a slightly different version of the traditional Hangman game.
 * I have used Spaceman as my character and he is in outer space searching for the correct country to land on.
-* You have to guess the correct country word.
-* At the end of each round you will get more information about the country.
-* The number of Wins increases for every correct country guessed.
-* The number of Losses increases for every wrong country guessed.
-* There is no end to the game.
-* Keep playing until you get tired.
 * Although the content of the game is responsive, the game can only be played on devices with a keyboard.
 * Hope you enjoy my game and learn something new today!
 
@@ -19,8 +13,14 @@
 4. Having the caps lock on will not affect the game play.
 
 ## Rules
-1. You win when you guess the complete word before you exhaust all 10 guesses or before the Spaceman explodes.
-2. You lose when you exhaust all 10 guesses or the Spaceman explodes.
+1. You have to guess the correct country word.
+2. You win when you guess the complete word before you exhaust all 10 guesses or before the Spaceman explodes.
+3. The number of Wins increases for every correct country guessed.
+4. You lose when you exhaust all 10 guesses or the Spaceman explodes.
+5. The number of Losses increases for every wrong country guessed.
+6. At the end of each round you will get more information about the country.
+7. There is no end to the game.
+8. Keep playing until you get tired.
 
 ## About the Code
 - JavaScript is the main programming language used in this game.
