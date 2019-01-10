@@ -9,6 +9,7 @@
 * The number of Losses increases for every wrong country guessed.
 * There is no end to the game.
 * Keep playing until you get tired.
+* Although the content of the game is responsive, the game can only be played on devices with a keyboard.
 * Hope you enjoy my game and learn something new today!
 
 ## Actions
@@ -20,6 +21,11 @@
 ## Rules
 1. You win when you guess the complete word before you exhaust all 10 guesses or before the Spaceman explodes.
 2. You lose when you exhaust all 10 guesses or the Spaceman explodes.
+
+## About the Code
+- JavaScript is the main programming language used in this game.
+- CSS3 and Bootstrap 4 are used for styling.
+- The content is responsive but the game is made only for desktops and largescreens with keyboard.
     
 ## References
 * Flag repository from : https://github.com/yusufshakeel/mysql-country-with-flag
