@@ -5,6 +5,7 @@
 * I have used Spaceman as my character and he is in outer space searching for the correct country to land on.
 * Although the content of the game is responsive, the game can only be played on devices with a keyboard.
 * Hope you enjoy my game and learn something new today!
+* [Link to the Spaceman game](https://juthikashetye.github.io/Word-Guess-Game/)
 
 ## Actions
 1. Press any alphabet keys to guess the letters in the country word which is diplayed in the form of dashes.
